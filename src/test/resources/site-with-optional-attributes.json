@@ -1,0 +1,8 @@
+{
+  "_id" : "12345678",
+  "name" : "default",
+  "desc" : "Default",
+  "attr_hidden_id" : "default",
+  "attr_no_delete" : true,
+  "role" : "admin"
+}

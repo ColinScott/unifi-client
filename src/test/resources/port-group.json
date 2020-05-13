@@ -1,0 +1,10 @@
+{
+  "_id": "891579ab266d466691ad761c6172390f",
+  "name": "NTP Port",
+  "group_type": "port-group",
+  "group_members": [
+    "123",
+    "456"
+  ],
+  "site_id": "80ffec3ac97a4d5bac6770bac93b4ba0"
+}

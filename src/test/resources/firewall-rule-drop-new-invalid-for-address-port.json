@@ -1,0 +1,35 @@
+{
+  "_id": "fba2ce30dda544dc83c0c9cc60aa5308",
+  "action": "drop",
+  "dst_firewallgroup_ids": [
+    "1af44966b16142a993ad518790aba628",
+    "c448fe62c962480ba10bd8499817b73a"
+  ],
+  "enabled": false,
+  "ipsec": "match-ipsec",
+  "logging": true,
+  "name": "Test 2",
+  "protocol_match_excepted": true,
+  "ruleset": "GUEST_OUT",
+  "src_firewallgroup_ids": [
+    "38545d563d904f6585b0840c401f1bc0",
+    "c88cde38447244808d2336e57cf7d1aa"
+  ],
+  "src_mac_address": "00:00:00:00:00:00",
+  "state_established": false,
+  "state_invalid": true,
+  "state_new": true,
+  "state_related": false,
+  "dst_address": "",
+  "dst_port": "",
+  "dst_networkconf_id": "",
+  "dst_networkconf_type": "NETv4",
+  "icmp_typename": "",
+  "protocol": "udp",
+  "src_address": "",
+  "src_port": "",
+  "src_networkconf_id": "",
+  "src_networkconf_type": "NETv4",
+  "rule_index": "2002",
+  "site_id": "72b1617313034f478f40d83249de942c"
+}
