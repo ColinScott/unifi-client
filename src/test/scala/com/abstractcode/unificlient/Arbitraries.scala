@@ -1,7 +1,5 @@
 package com.abstractcode.unificlient
 
-import java.nio.file.Path
-
 import com.abstractcode.unificlient.ControllerConfiguration.UniFiCredentials
 import com.abstractcode.unificlient.Generators.uri
 import com.abstractcode.unificlient.UniFiClient.UniFiAccess
@@ -53,8 +51,6 @@ object Arbitraries {
 
   implicit val arbitraryIpAddressV4: Arbitrary[IpAddressV4] = Arbitrary(Generators.ipAddressV4)
   implicit val arbitraryCidrV4: Arbitrary[CidrV4] = Arbitrary(Generators.cidrV4)
-
-  implicit val arbitraryPath: Arbitrary[Path] = Arbitrary(Generators.path)
 
   implicit val arbitraryFirewallGroup: Arbitrary[FirewallGroup] = Arbitrary(Generators.firewallGroup)
   implicit val arbitraryFirewallRule: Arbitrary[FirewallRule] = Arbitrary(Generators.firewallRule)

@@ -1,7 +1,5 @@
 package com.abstractcode.unificlient
 
-import java.nio.file.{FileSystems, Path}
-
 import com.abstractcode.unificlient.ControllerConfiguration.UniFiCredentials
 import com.abstractcode.unificlient.UniFiClient.UniFiAccess
 import com.abstractcode.unificlient.models.FirewallGroup.{Ipv4AddressSubnetGroup, PortGroup, UnknownFirewallGroup}
@@ -100,11 +98,6 @@ object Generators {
   } yield WideAreaNetwork(id, name, Some(hiddenId), delete)
 
   val network: Gen[Network] = Gen.oneOf(defaultNetwork, lan, wan)
-
-  val path: Gen[Path] = for {
-    count <- Gen.choose(1, 5)
-    sections <- Gen.listOfN(count, Gen.alphaNumStr.filter(!_.isEmpty))
-  } yield FileSystems.getDefault.getPath(sections.head, sections.tail: _*)
 
   val firewallGroupId: Gen[FirewallGroupId] = for {
     id <- Gen.identifier
