@@ -1,10 +1,8 @@
-name := "unifi-client"
+ThisBuild / version := "0.1.0"
+ThisBuild / organization := "com.abstractcode"
+ThisBuild / licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0"))
 
-version := "0.1.0"
-organization := "com.abstractcode"
-licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0"))
-
-scalaVersion := "2.13.2"
+ThisBuild / scalaVersion := "2.13.2"
 
 val catsVersion = "2.1.1"
 val catsEffectVersion = "2.1.3"
@@ -15,7 +13,11 @@ val logbackVersion = "1.2.3"
 val scalaCheckVersion = "1.14.3"
 val spec2Version = "4.9.4"
 
-libraryDependencies ++= Seq(
+lazy val commonSettings = Seq(
+  scalacOptions ++= compilerOptions
+)
+
+lazy val commonDependencies = Seq(
   "io.circe" %% "circe-core" % circeVersion,
   "io.circe" %% "circe-generic" % circeVersion,
   "io.circe" %% "circe-parser" % circeVersion,
@@ -33,7 +35,44 @@ libraryDependencies ++= Seq(
   "org.specs2" %% "specs2-matcher-extra" % spec2Version % Test,
 )
 
-scalacOptions ++= Seq(
+lazy val httpClientDependencies = Seq(
+  "org.http4s" %% "http4s-blaze-client" % http4sVersion
+)
+
+lazy val client = project
+  .in(file("client"))
+  .settings(
+    name := "unifi-client",
+    libraryDependencies ++= commonDependencies,
+    commonSettings
+  )
+
+lazy val examples = project
+  .in(file("examples"))
+  .settings(
+    name := "unifi-client-examples",
+    libraryDependencies ++= commonDependencies ++ httpClientDependencies,
+    commonSettings,
+    skipOnPublishSettings
+  )
+  .dependsOn(client)
+
+lazy val extractor = project
+  .in(file("extractor"))
+  .settings(
+    name := "unifi-markdown-extractor",
+    libraryDependencies ++= commonDependencies ++ httpClientDependencies,
+    commonSettings,
+    skipOnPublishSettings
+  )
+  .dependsOn(client)
+
+lazy val root = project
+  .in(file("."))
+  .aggregate(client, examples, extractor)
+  .settings(skipOnPublishSettings)
+
+lazy val compilerOptions = Seq(
   "-deprecation", // Emit warning and location for usages of deprecated APIs.
   "-encoding", "utf-8", // Specify character encoding used by source files.
   "-explaintypes", // Explain type errors in more detail.
@@ -91,5 +130,8 @@ scalacOptions ++= Seq(
   "-Ywarn-unused:privates", // Warn if a private member is unused.
   "-Ywarn-value-discard", // Warn when non-Unit expression results are unused.
 )
+
+lazy val skipOnPublishSettings =
+  Seq(skip in publish := true, publish := (()), publishLocal := (()), publishArtifact := false, publishTo := None)
 
 addCompilerPlugin("org.typelevel" %% "kind-projector" % "0.11.0" cross CrossVersion.full)

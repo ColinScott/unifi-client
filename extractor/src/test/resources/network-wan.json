@@ -1,0 +1,21 @@
+{
+  "_id": "6cf3cade088b45fc9902f60e09a5b7bf",
+  "attr_no_delete": true,
+  "attr_hidden_id": "WAN",
+  "wan_networkgroup": "WAN",
+  "purpose": "wan",
+  "name": "WAN",
+  "wan_type": "dhcp",
+  "site_id": "6cf3cade088b45fc9902f60e09a5b7bf",
+  "report_wan_event": true,
+  "wan_type_v6": "dhcpv6",
+  "wan_load_balance_type": "failover-only",
+  "wan_load_balance_weight": 50,
+  "wan_egress_qos": "",
+  "wan_dns1": "1.1.1.1",
+  "wan_dhcpv6_pd_size": 56,
+  "wan_vlan_enabled": false,
+  "wan_vlan": 2,
+  "wan_smartq_enabled": false,
+  "wan_dns2": "1.0.0.1"
+}

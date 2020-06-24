@@ -24,7 +24,7 @@ These instructions assume you are using Cats `IO`. The API implementation only r
 
 ### Configuration
 
-Configuration is supplied to the client via [ControllerConfiguration](src/main/scala/com/abstractcode/unificlient/ControllerConfiguration.scala).
+Configuration is supplied to the client via [ControllerConfiguration](client/src/main/scala/com/abstractcode/unificlient/ControllerConfiguration.scala).
 
 ```scala
 val configuration = ControllerConfiguration(

@@ -1,0 +1,10 @@
+{
+  "_id": "68957123c1464c619ea91ad2d03a385f",
+  "name": "Local Networks IPv4",
+  "group_type": "address-group",
+  "group_members": [
+    "10.3.2.1",
+    "192.168.40.1/16"
+  ],
+  "site_id": "4740757c1a8744b4b2c9e0ed420762c5"
+}
