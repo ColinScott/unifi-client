@@ -9,7 +9,7 @@ import cats.effect._
 import cats.implicits._
 import com.abstractcode.unifimarkdownextractor.configuration.ParseError._
 import com.abstractcode.unifimarkdownextractor.configuration.{AppConfiguration, ParseError}
-import com.abstractcode.unifimarkdownextractor.exporter.{FileExporter, FileSiteExporter}
+import com.abstractcode.unifimarkdownextractor.exporter.{FileActions, FileActionsImpl, FileExporter, FileSiteExporter}
 import com.abstractcode.unificlient.{HttpUniFiClient, UniFiClient}
 import javax.net.ssl.{SSLContext, X509TrustManager}
 import org.http4s.client.Client
@@ -20,6 +20,7 @@ import scala.concurrent.ExecutionContext.global
 object Main extends IOApp {
   def process(appConfiguration: AppConfiguration, client: Client[IO]): IO[ExitCode] = {
     implicit val uniFiClient: UniFiClient[IO] = new HttpUniFiClient[IO](client)
+    implicit val fileActions: FileActions[IO] = new FileActionsImpl[IO]
     val exporter = new FileExporter[IO](appConfiguration.export, new FileSiteExporter[IO](appConfiguration.export))
     val action = for {
       _ <- exporter.export

@@ -30,6 +30,8 @@ object UniFiClient {
   case class UniFiAccess(authCookies: AuthCookies, serverUri: Uri)
 
   type UniFiRequest[F[_], R] = Kleisli[F, UniFiAccess, R]
+
+  def apply[F[_] : UniFiClient]: UniFiClient[F] = implicitly[UniFiClient[F]]
 }
 
 class HttpUniFiClient[F[_]: Sync](client: Client[F]) extends UniFiClient[F] {
