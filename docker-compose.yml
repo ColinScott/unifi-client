@@ -1,0 +1,12 @@
+version: "3.3"
+
+services:
+  extractor:
+    build: .
+    environment:
+      SERVER_URI:
+      USERNAME:
+      PASSWORD:
+      BASE_PATH: /out/
+    volumes:
+      - ./out:/out

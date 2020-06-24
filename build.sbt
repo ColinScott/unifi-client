@@ -7,11 +7,11 @@ ThisBuild / scalaVersion := "2.13.2"
 val catsVersion = "2.1.1"
 val catsEffectVersion = "2.1.3"
 val circeVersion = "0.13.0"
-val http4sVersion = "0.21.3"
+val http4sVersion = "0.21.4"
 val logbackVersion = "1.2.3"
 
 val scalaCheckVersion = "1.14.3"
-val spec2Version = "4.9.4"
+val spec2Version = "4.10.0"
 
 lazy val commonSettings = Seq(
   scalacOptions ++= compilerOptions
@@ -39,6 +39,10 @@ lazy val httpClientDependencies = Seq(
   "org.http4s" %% "http4s-blaze-client" % http4sVersion
 )
 
+lazy val extractorDependencies = Seq(
+  "ch.qos.logback" % "logback-classic" % logbackVersion
+)
+
 lazy val client = project
   .in(file("client"))
   .settings(
@@ -61,7 +65,7 @@ lazy val extractor = project
   .in(file("extractor"))
   .settings(
     name := "unifi-markdown-extractor",
-    libraryDependencies ++= commonDependencies ++ httpClientDependencies,
+    libraryDependencies ++= commonDependencies ++ httpClientDependencies ++ extractorDependencies,
     commonSettings,
     skipOnPublishSettings
   )
