@@ -4,6 +4,7 @@ import cats.Show
 import cats.data.NonEmptyList
 import cats.implicits._
 import com.abstractcode.unificlient.models.IpAddressV4._
+import com.abstractcode.unificlient.models.Network._
 import com.abstractcode.unificlient.models._
 import com.abstractcode.unifimarkdownextractor.MarkdownTableConverter
 import com.abstractcode.unifimarkdownextractor.MarkdownTableConverter.Column
@@ -20,7 +21,7 @@ object MarkdownConversion {
     NonEmptyList.of[Column[LocalNetwork]](
       Column("Network", _.name.name),
       Column("VLAN", _.vlan.show),
-      Column("Network", _.ipSubnet.toString)
+      Column("Subnet", _.ipSubnet.show)
     )
   )
 
