@@ -1,6 +1,6 @@
 FROM openjdk:11-jdk
 
-ARG SBT_VERSION=1.3.10
+ARG SBT_VERSION=1.3.13
 
 RUN curl -L -o sbt-$SBT_VERSION.deb https://dl.bintray.com/sbt/debian/sbt-$SBT_VERSION.deb
 RUN dpkg -i sbt-$SBT_VERSION.deb
