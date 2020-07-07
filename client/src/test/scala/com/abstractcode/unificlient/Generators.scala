@@ -12,10 +12,9 @@ import org.scalacheck.Gen
 import org.scalacheck.Gen._
 
 object Generators {
-  val one = 1 // Work around Scala 2.13.2 bug
   val nonEmptyString: Gen[String] = arbitrary[String].suchThat(!_.isEmpty)
   val nonEmptyOrWhitespaceString: Gen[String] = arbitrary[String].suchThat(!_.trim.isEmpty)
-  val whitespaceString: Gen[String] = Gen.chooseNum(one - 1, 32).map(" " * _)
+  val whitespaceString: Gen[String] = Gen.chooseNum(0, 32).map(" " * _)
   val hiddenId: Gen[Option[String]] = Gen.option(Gen.identifier)
   val noDelete: Gen[Option[Boolean]] = Gen.option(Gen.oneOf(List(true, false)))
 
@@ -74,7 +73,7 @@ object Generators {
 
   val cidrV4: Gen[CidrV4] = for {
     ip <- ipAddressV4
-    prefixLength <- Gen.choose[Byte]((one - 1).toByte, 32.toByte)
+    prefixLength <- Gen.choose[Byte](0.toByte, 32.toByte)
   } yield CidrV4(ip, prefixLength)
 
   val defaultNetwork: Gen[LocalNetwork] = for {
@@ -132,7 +131,7 @@ object Generators {
   } yield FirewallRuleId(id)
 
   val firewallRuleSourceAddressPortGroup: Gen[FirewallRule.SourceAddressPortGroup] = for {
-    count <- Gen.choose(one - 1, 2)
+    count <- Gen.choose(0, 2)
     groups <- Gen.listOfN(count, firewallGroupId)
     macAddress <- Gen.option(Gen.identifier)
   } yield FirewallRule.SourceAddressPortGroup(groups, macAddress)
@@ -155,7 +154,7 @@ object Generators {
   )
 
   val firewallRuleDestinationAddressPortGroup: Gen[FirewallRule.DestinationAddressPortGroup] = for {
-    count <- Gen.choose(one - 1, 2)
+    count <- Gen.choose(0, 2)
     groups <- Gen.listOfN(count, firewallGroupId)
   } yield FirewallRule.DestinationAddressPortGroup(groups)
 

@@ -2,12 +2,12 @@ ThisBuild / version := "0.1.0"
 ThisBuild / organization := "com.abstractcode"
 ThisBuild / licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0"))
 
-ThisBuild / scalaVersion := "2.13.2"
+ThisBuild / scalaVersion := "2.13.3"
 
 val catsVersion = "2.1.1"
 val catsEffectVersion = "2.1.3"
 val circeVersion = "0.13.0"
-val http4sVersion = "0.21.4"
+val http4sVersion = "0.21.6"
 val logbackVersion = "1.2.3"
 
 val scalaCheckVersion = "1.14.3"
@@ -105,7 +105,6 @@ lazy val compilerOptions = Seq(
   "-Xlint:adapted-args", // Warn if an argument list is modified to match the receiver.
   "-Xlint:nullary-unit", // Warn when nullary methods return Unit.
   "-Xlint:inaccessible", // Warn about inaccessible types in method signatures.
-  "-Xlint:nullary-override", // Warn when non-nullary def f() overrides nullary def f.
   "-Xlint:infer-any", // Warn when a type argument is inferred to be Any.
   "-Xlint:doc-detached", // A Scaladoc comment appears to be detached from its element.
   "-Xlint:private-shadow", // A private field (or class parameter) shadows a superclass field.
